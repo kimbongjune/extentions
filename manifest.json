@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Element Finder",
+  "version": "1.0",
+  "permissions": [
+    "notifications",
+    "activeTab",
+    "storage",
+    "webNavigation",
+    "clipboardWrite"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://fastcampus.app/courses/*",
+    "http://fastcampus.app/courses/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true
+    }
+  ]
+}
