@@ -20,3 +20,17 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       });
   }
 });
+
+chrome.windows.onFocusChanged.addListener(function(windowId) {
+  if (windowId !== chrome.windows.WINDOW_ID_NONE) { // 창이 닫힌 경우를 제외
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      if (tabs.length > 0) {
+        const tab = tabs[0];
+        if (tab.url && (tab.url.startsWith("https://fastcampus.app/courses/") || tab.url.startsWith("http://fastcampus.app/courses/"))) {
+          console.log("포커싱@@@");
+          chrome.tabs.sendMessage(tab.id, { type: "onFocus" });
+        }
+      }
+    });
+  }
+});

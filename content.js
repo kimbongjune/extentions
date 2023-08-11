@@ -19,13 +19,26 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             const bigTitle = spanElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.firstChild.textContent.trim();
             const middleTitle = spanElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.textContent.trim();
             const videoTitle = `${bigTitle}-${middleTitle}-${spanElement.textContent.trim()}.mp4`;
-    
+           
             window.navigator.clipboard.writeText(videoTitle).then(() => {
                 console.log(videoTitle)
                 return;
             });
           }
         //startObserver();
+    }
+    if (message.type === 'onFocus') {
+        console.log("works!!!!!!!!!!!!!!!!!!!!!!!")
+        const spanElement = document.querySelector('span.classroom-sidebar-clip__chapter__clip__title--active');
+        if (spanElement) {
+          const bigTitle = spanElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.firstChild.textContent.trim();
+          const middleTitle = spanElement.parentElement.parentElement.parentElement.parentElement.parentElement.previousElementSibling.lastElementChild.textContent.trim();
+          const videoTitle = `${bigTitle}-${middleTitle}-${spanElement.textContent.trim()}.mp4`;
+          window.navigator.clipboard.writeText(videoTitle).then(() => {
+                console.log(videoTitle)
+                return;
+            });
+        }
     }
 });
 

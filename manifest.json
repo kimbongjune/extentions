@@ -3,6 +3,7 @@
   "name": "Element Finder",
   "version": "1.0",
   "permissions": [
+    "storage",
     "notifications",
     "activeTab",
     "storage",
